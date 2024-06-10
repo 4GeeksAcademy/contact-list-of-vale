@@ -1,44 +1,32 @@
+import ContactList from "../views/ContactList.jsx";
+import CreateAContact from "../views/CreateAContact.jsx";
+import EditContact from "../views/EditContact.jsx"
+import DeleteContact from "../views/DeleteContact.jsx";
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+		store:{
+			contactList: [],
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			getContact: async () => {
+				try {
+					const response = await fetch ("https://playground.4geeks.com/contact/agendas/ValentinaM")
+					if(!response.ok) {
+						throw new Error ("hay un erorr");
+						}	
+						const data = await response.json();
+						setStore ({contactList:data});
+					} catch (error)
+					 {
+						Console.log(error);
+				}
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
-		}
+			addContact: async () => {},
+			editContact: async () => {},
+			deleteContact: async () => {},
+		},
 	};
 };
 
