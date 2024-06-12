@@ -2,27 +2,26 @@ import React, { useContext } from 'react';
 import { Context } from '../store/appContext';
 import { Link } from "react-router-dom";
 
-
 const ContactList = () => {
     const { store, actions } = useContext(Context);
+    console.log(store);
+
     return (
-        <div>
-            <div>ContactList</div>
-            <div className="mb-3">
-                <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
-                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
-            </div>
+        <div className="container mx-auto">
+            {store.contactList.map(contact => (
+                <div className='card' key={contact.id}>
+                    <div className='card-body'>{contact.name}</div>
+                    <div className='card-body'>{contact.email}</div>
+                    <div className='card-body'>{contact.phone}</div>
+                    <div className='card-body'>{contact.address}</div>
+                </div>
+            ))}
             <Link to="/EditContact" className="btn btn-success">
-                edit the contact
+                Edit the contact
             </Link>
             <div>
-                <Link to="/CreateAcontact" className="btn btn-success">
-                    Add a new one 
-                </Link>
-            </div>
-            <div>
                 <Link to="/DeleteContact" className="btn btn-success">
-                    Delete one 
+                    Delete one
                 </Link>
             </div>
         </div>
