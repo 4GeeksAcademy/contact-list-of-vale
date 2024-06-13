@@ -10,20 +10,36 @@ const ContactList = () => {
         <div className="container mx-auto">
             {store.contactList.map(contact => (
                 <div className='card' key={contact.id}>
-                    <div className='card-body'>{contact.name}</div>
-                    <div className='card-body'>{contact.email}</div>
-                    <div className='card-body'>{contact.phone}</div>
-                    <div className='card-body'>{contact.address}</div>
+                    <div className='card-body'>
+                        <h2>
+                            {contact.name}
+                        </h2>
+                        <p>
+                            {contact.email}
+                        </p>
+                        <p>
+                            {contact.phone}
+                        </p>
+                        <p>
+                            {contact.address}
+                        </p>
+
+                    </div>
+                    <div className='card-footer'>
+                        <Link to="/EditContact" className="btn btn-success">
+                            Edit the contact
+                        </Link>
+
+                        <Link to="/DeleteContact" className="btn btn-success">
+                            Delete one
+                        </Link>
+
+                    </div>
                 </div>
+
             ))}
-            <Link to="/EditContact" className="btn btn-success">
-                Edit the contact
-            </Link>
-            <div>
-                <Link to="/DeleteContact" className="btn btn-success">
-                    Delete one
-                </Link>
-            </div>
+
+
         </div>
     );
 };
