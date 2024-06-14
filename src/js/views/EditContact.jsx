@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Context } from '../store/appContext';
+import { useParams } from 'react-router';
 
-const EditContact = ({ editId }) => {
+const EditContact = () => {
   const { actions } = useContext(Context);
+  const params = useParams () //const {id}= useParams () esto es para usar el id 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -16,14 +18,14 @@ const EditContact = ({ editId }) => {
       phone: phone,
       address: address
     };
-    await actions.editContact(editId, newData);
-    // Limpiar los campos después de editar
+    await actions.editContact(params.id, newData);
+    // Limpiar las cajas después de editar
     setFullName('');
     setEmail('');
     setPhone('');
     setAddress('');
   };
-
+ console.log(params);
   return (
     <div>
       <div className="container mx-auto py-3 px-3">
@@ -55,3 +57,4 @@ const EditContact = ({ editId }) => {
 };
 
 export default EditContact;
+

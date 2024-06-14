@@ -25,7 +25,7 @@ const ContactList = () => {
                         <p>{contact.address}</p>
                     </div>
                     <div className='card-footer'>
-                        <Link to="/EditContact" className="btn btn-success">
+                        <Link to={"/editContact/"+contact.id} className="btn btn-success">
                             Edit the contact
                         </Link>
                         <button className="btn btn-danger btn-lg" onClick={() => handleDeleteContact(contact.id)}>
