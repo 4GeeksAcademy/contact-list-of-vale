@@ -34,10 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           actions.handleCreateUser()
           actions.addContact(dataContact)
         }
-
         if (response.ok) { actions.getAllUsers() }
-
-
       },
 
       editContact: async (editId, newData) => {
@@ -54,60 +51,34 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json();
           if (response.ok) { actions.getAllUsers(); }
         } catch (error) {
-          console.error("Error editing contact:", error);
+          console.error(" Error editing contact:( ", error);
+        }
+      },
+
+      deleteContact: async (id) => {
+        console.log(id);
+        const actions = getActions()
+        try {
+          await fetch(`https://playground.4geeks.com/contact/agendas/ValentinaM/contacts/${id}`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          await actions.getAllUsers();
+          console.log("Contact deleted :)");
+        } catch (error) {
+          console.error("not deleted", error);
         }
       },
 
 
-     // editPost: async (id, post) => {
-      //  const store = getStore();
-        //const actions = getActions();
-        //try {
-         // const response = await fetch(store.apiUrl + `/${id}`, {
-           // method: "PATCH",
-            //body: JSON.stringify(post),
-           // headers: {
-             // "Content-type": "application/json",
-           // },
-         // });
-        //const data = await response.json();
-          //if (response.ok) {
-            //actions.getPost();
-          //}
-        //} catch (error) {
-          //console.log(error);
-        //}
-      //},
-
-
-
-
-
-
-
-    deleteContact: async (Id) => {
-      const actions = getActions()
-      try {
-        await fetch(`https://playground.4geeks.com/contact/agendas/ValentinaM/contacts/${Id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        await actions.getAllUsers();
-        console.log("Contact deleted :)");
-      } catch (error) {
-        console.error("not deleted", error);
-      }
+      handleCreateUser: async () => {
+        await fetch("https://playground.4geeks.com/contact/agendas/ValentinaM", {
+          method: "POST",
+        })
+      },
     },
-
-
-    handleCreateUser: () => {
-      fetch("https://playground.4geeks.com/contact/agendas/ValentinaM", {
-        method: "POST",
-      })
-    },
-  },
   };
 };
 

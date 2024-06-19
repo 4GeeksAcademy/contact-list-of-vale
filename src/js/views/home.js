@@ -5,11 +5,8 @@ import { Link } from "react-router-dom";
 
 
 export const Home = () => (
-	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
+	<div className="text-center mt-5 ">
+		
 		<Link to="/ContactList" className="btn btn-success">
 			ContactList
 		</Link>
