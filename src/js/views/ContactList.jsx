@@ -27,36 +27,33 @@ const ContactList = () => {
                                 </div>
                                 <div className='col-md-6'>
                                     <h2 className='fw-bold font-monospace mb-4 fs-2'>{contact.name}</h2>
-                                    <p className='fs-4'><i class="fas fa-map-marker-alt"></i>  {contact.address}</p>
-                                    <p>{contact.id} </p>
-                                    <p className='fs-4'><i class="fas fa-phone"></i>  {contact.phone}</p>
-                                    <p className='fs-4'><i class="fas fa-envelope"></i>  {contact.email}</p>
+                                    <p className='fs-4'><i className="fas fa-map-marker-alt"></i>  {contact.address}</p>
+                                    <p className='fs-4'><i className="fas fa-phone"></i>  {contact.phone}</p>
+                                    <p className='fs-4'><i className="fas fa-envelope"></i>  {contact.email}</p>
                                 </div>
 
                                 <div className='col-md-2'>
                                     <Link to={"/editContact/" + contact.id} className="btn m-1">
-                                        <i class="fas fa-pencil-alt"></i>
+                                        <i className="fas fa-pencil-alt"></i>
                                     </Link>
-                                  
-                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="fas fa-trash-alt"></i>
 
+                                    <button type="button" className="btn" data-bs-toggle="modal" data-bs-target={`#deleteModal${contact.id}`}>
+                                        <i className="fas fa-trash-alt"></i>
                                     </button>
 
-
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure sure about this?</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div className="modal fade" id={`deleteModal${contact.id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div className="modal-dialog">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h1 className="modal-title fs-5" id="exampleModalLabel">Are you sure about this?</h1>
+                                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
-                                                <div class="modal-body">
-                                                    if you delete this, the world will collapse.
+                                                <div className="modal-body">
+                                                    If you delete this, the world will collapse.
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">No</button>
-                                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onClick={() => actions.deleteContact(contact.id)}>Yes Baby</button>
+                                                <div className="modal-footer">
+                                                    <button type="button" className="btn btn-dark" data-bs-dismiss="modal">No</button>
+                                                    <button type="button" className="btn btn-dark" data-bs-dismiss="modal" onClick={() => handleDeleteContact(contact.id)}>Yes Baby</button>
                                                 </div>
                                             </div>
                                         </div>
